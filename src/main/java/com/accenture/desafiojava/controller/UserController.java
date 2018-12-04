@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.util.Date;
@@ -84,10 +85,11 @@ public class UserController {
 
     @GetMapping(value = "/perfil-usuario/{id}")
     @ResponseBody
-    public ResponseEntity<?> login (@PathVariable UUID id, @RequestHeader("token") String token, HttpServletResponse response) {
+    public ResponseEntity<?> login (@PathVariable UUID id, HttpServletRequest request, HttpServletResponse response) {
 
         User registeredUser = iUserService.getUserById(id);
         MessageDTO messageDTO = new MessageDTO();
+        String token = request.getHeader("token");
 
         if (registeredUser != null && token != null && token.equals(registeredUser.getToken())) {
 

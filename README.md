@@ -34,3 +34,43 @@
 * En caso de que los tokens no coincidan, retornar error con status adecuado y el mensaje "No autorizado"
 * Caso sea el mismo token, verificar si el último login ha sido hace MENOS que 30 minutos. Si caso no haga accedido hace MENOS que 30 minutos, retornar error con el status adecuado y el mensaje "Sesión inválida".
 * Caso todo esté correcto, retornar el usuario en el mismo formato de la respuesta de Login.
+
+## Datos de prueba
+* Registro:
+    - URL: https://desafio-java-wsolano.herokuapp.com/registro
+    - BODY: 
+        ```json
+        {
+            "name": "Wladimir Solano",
+            "email": "wsolano@wsolano.cl",
+            "password": "hunter1",
+            "phones": [
+                {
+                    "number": "1234567",
+                    "citycode": "1",			
+                    "contrycode": "57"
+                },
+                {
+                    "number": "7654321",
+                    "citycode": "1",			
+                    "contrycode": "58"
+                }
+            ]
+        }
+        ```
+    - HEADER: Content-Type:application/json
+    
+* Login
+    - URL: https://desafio-java-wsolano.herokuapp.com/login
+    - BODY: 
+        ```json
+        {
+            "email": "wsolano@wsolano.cl",
+            "password": "hunter1"
+        }
+        ```
+    - HEADER: Content-Type:application/json
+    
+* Perfil Usuario
+    - URL: https://desafio-java-wsolano.herokuapp.com/id => sustituir por el id del usuario a consultar
+    - HEADER: token = tokenUsuario => Corresponde al token creado al momento del registro

@@ -39,6 +39,3 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-data-jpa")
 }
 
-task stage {
-    dependsOn installDist
-}

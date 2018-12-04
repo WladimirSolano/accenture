@@ -1,1 +1,1 @@
-web: build/install/gradle-getting-started/bin/gradle-getting-started
+web: build/install/desafio-java-wsolano/bin/desafio-java-wsolano

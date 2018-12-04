@@ -1,1 +1,1 @@
-web: build/install/desafio-java-wsolano/bin/desafio-java-wsolano
+web: java -Dserver.port=$PORT $JAVA_OPTS -jar build/libs/*.war

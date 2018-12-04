@@ -72,6 +72,15 @@ public class UserController {
 
             registeredUser.setLast_login(new Date());
             registeredUser.setModified(new Date());
+
+            if (System.currentTimeMillis() > registeredUser.getLast_login().getTime() + EXPIRATION_TIME){
+                String token = Jwts.builder()
+                        .setSubject(registeredUser.getEmail())
+                        .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
+                        .signWith(SignatureAlgorithm.HS512, SECRET)
+                        .compact();
+                registeredUser.setToken(token);
+            }
             iUserService.save(registeredUser);
             response.addHeader(HEADER_STRING, registeredUser.getToken());
             return new ResponseEntity<>(userToUserDTOConverter.convert(registeredUser), HttpStatus.OK);
